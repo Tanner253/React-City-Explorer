@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# ***Project README Example***
+---------------------------------
+---------------------------------
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project A.M.A.N.D.A.
+---------------------------------
+## We are deployed on Azure!
 
-## Available Scripts
+[project url here]
 
-In the project directory, you can run:
+---------------------------------
+## Web Application
+***[Explain your app, should be at least a paragraph. What does it do? Why should I use? Sell your product!]***
 
-### `npm start`
+The web application consists of a frontend written in Razor views, HTML, CSS,
+Bootstrap, Popper, and jQuery. The backend was written in C# using ASP.NET Core 2, Entity Framework Core, and the MVC framework.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+An interface is provided to create new blog
+posts, view existing blog posts, edit existing blog posts, delete existing
+blog posts, and search by both keywords and usernames. All blog posts can be
+enriched using Azure Language Services (part of Microsoft's Cognitive Services
+suite), Bing Image API, and Parallel Dots (for automated tagging of posts via
+key phrases detected within the post's body). Image enrichments can be added
+based on the overall sentiment score (a range 0.0 - 1.0 related to the mood
+of the post) and key phrases / keywords detected in the posts. Optionally, users
+can choose to opt-out of these features for privacy or data collection concerns.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---------------------------------
 
-### `npm test`
+## Tools Used
+Microsoft Visual Studio Community 2017 (Version 15.5.7)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- C#
+- ASP.Net Core
+- Entity Framework
+- MVC
+- xUnit
+- Bootstrap
+- Azure
+- Parallel Dots API
 
-### `npm run build`
+---------------------------------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Recent Updates
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### V 1.4
+*Added OAuth for MySpace* - 23 Jan 2003
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---------------------------
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Clone this repository to your local machine.
+```
+$ git clone https://github.com/YourRepo/YourProject.git
+```
+Once downloaded, you can either use the dotnet CLI utilities or Visual Studio 2017 (or greater) to build the web application. The solution file is located in the AmandaFE subdirectory at the root of the repository.
+```
+cd YourRepo/YourProject
+dotnet build
+```
+The dotnet tools will automatically restore any NuGet dependencies. Before running the application, the provided code-first migration will need to be applied to the SQL server of your choice configured in the /AmandaFE/AmandaFE/appsettings.json file. This requires the Microsoft.EntityFrameworkCore.Tools NuGet package and can be run from the NuGet Package Manager Console:
+```
+Update-Database
+```
+Once the database has been created, the application can be run. Options for running and debugging the application using IIS Express or Kestrel are provided within Visual Studio. From the command line, the following will start an instance of the Kestrel server to host the application:
+```
+cd YourRepo/YourProject
+dotnet run
+```
+Unit testing is included in the AmandaFE/FrontendTesting project using the xUnit test framework. Tests have been provided for models, view models, controllers, and utility classes for the application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---------------------------------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
+***[Provide some images of your app with brief description as title]***
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Overview of Recent Posts
+![Overview of Recent Posts](https://via.placeholder.com/500x250)
 
-## Learn More
+### Creating a Post
+![Post Creation](https://via.placeholder.com/500x250)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Enriching a Post
+![Enriching Post](https://via.placeholder.com/500x250)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Viewing Post Details
+![Details of Post](https://via.placeholder.com/500x250)
 
-### Code Splitting
+---------------------------
+## Data Flow (Frontend, Backend, REST API)
+***[Add a clean and clear explanation of what the data flow is. Walk me through it.]***
+![Data Flow Diagram](/assets/img/Flowchart.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---------------------------
+## Data Model
 
-### Analyzing the Bundle Size
+### Overall Project Schema
+***[Add a description of your DB schema. Explain the relationships to me.]***
+![Database Schema](/assets/img/ERD.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---------------------------
+## Model Properties and Requirements
 
-### Making a Progressive Web App
+### Blog
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| Summary | string | YES |
+| Content | string | YES |
+| Tags | string(s) | NO |
+| Picture | img jpeg/png | NO |
+| Sentiment | float | NO |
+| Keywords | string(s) | NO |
+| Related Posts | links | NO |
+| Date | date/time object | YES |
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### User
 
-### Deployment
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| Name/Author | string | YES |
+| Posts | list | YES |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---------------------------
 
-### `npm run build` fails to minify
+## Change Log
+***[The change log will list any changes made to the code base. This includes any changes from TA/Instructor feedback]***
+1.4: *Added OAuth for MySpace* - 23 Jan 2003
+1.3: *Changed email handler to Alta Vista, fixed issue with styling on Netscape Navigator browser.* - 21 Dec 1999
+1.2: *Fixed bug where pages would not load due to temp data* - 16 Jun 1998
+1.1: *Added ability for user to change photos on a post* - 12 May 1998
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+------------------------------
+
+## Authors
+Albus Dumbbledore
+Igor Karkaroff
+Minerva McGonagall
+Leta Lestrange
+Gellert Grindelwald
+
+------------------------------
+
+For more information on Markdown: https://www.markdownguide.org/cheat-sheet
+
