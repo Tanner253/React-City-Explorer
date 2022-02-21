@@ -35,6 +35,8 @@ VSCode
 Clone this repository to your local machine.
 ```
 $ git clone https://github.com/YourRepo/YourProject.git
+```
+run NPM i 
 
 
 ---------------------------------
