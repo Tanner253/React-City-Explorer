@@ -1,42 +1,23 @@
-# City Explorer
----------------------------------
----------------------------------
+**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
-# Project react app city explorer
----------------------------------
-## We are deployed on netlify
-
-[project url here]
-
----------------------------------
-## Web Application
-***[Explain your app, should be at least a paragraph. What does it do? Why should I use? Sell your product!]***
-
-
-
----------------------------------
-
-## Tools Used
-VSCode
-
-- React
-
----------------------------------
-
-## Recent Updates
-
-#### V 1.4
-*Added OAuth for MySpace* - 23 Jan 2003
-
----------------------------
+## Overview
+users can see a map of location searched by user
 
 ## Getting Started
+git clone project
+npm i project
+npm start
 
-Clone this repository to your local machine.
-```
-$ git clone https://github.com/YourRepo/YourProject.git
-```
-run NPM i 
+## Architecture
+- react
+- javascript
+
+## Change Log
+<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
+
+01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+
+## Credit and Collaborations
 
 
 ---------------------------------
