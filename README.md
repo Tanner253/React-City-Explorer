@@ -19,6 +19,21 @@ npm start
 
 ## Credit and Collaborations
 
+Name of feature: Init
+
+Estimate of time needed to complete: 30 min
+
+Start time: 1:30
+
+Finish time:2 
+
+Actual time needed to complete:30 min
+
+Name of feature: 
+Estimate of time needed to complete: 
+Start time: 
+Finish time:
+Actual time needed to complete:
 
 ---------------------------------
 ![ScreenShot](./public/images/WRRC.PNG)
