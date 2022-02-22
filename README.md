@@ -32,6 +32,22 @@ Finish time:2
 
 Actual time needed to complete:30 min
 
+Name of feature: locations
+Estimate of time needed to complete: 1 hr 
+Start time: 4
+Finish time:530
+Actual time needed to complete:130
+Name of feature: maps
+Estimate of time needed to complete: 30 min
+Start time: 530
+Finish time:630
+Actual time needed to complete:1hr
+Name of feature: error
+Estimate of time needed to complete: 1 hr
+Start time: 7
+Finish time:930
+Actual time needed to complete:2 and a half hourss
+
 Name of feature: 
 Estimate of time needed to complete: 
 Start time: 
