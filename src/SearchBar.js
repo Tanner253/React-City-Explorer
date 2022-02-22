@@ -7,8 +7,7 @@ class SearchBar extends React.Component {
       <Container className="text-center">
 
         <form>
-          <label>Enter city name! <input type="text" onInput={(e) => {this.props.handleCityInput(e.target.value)}}></input>
-          </label>
+          <input type="text" onInput={(e) => {this.props.handleCityInput(e.target.value)}}></input>
           <button onClick={this.props.handleGetData}>Search</button>
         </form>
 
