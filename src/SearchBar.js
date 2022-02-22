@@ -5,12 +5,11 @@ class SearchBar extends React.Component {
     return (
       //add on submit and form
       <Container className="text-center">
+
         <form>
-          <button onClick={this.props.handleGetData}>Display some data</button>
-        </form>
-        <form>
-          <label>Enter city name! <input type="text" onInput={this.props.handleCityInput}></input></label>
-          <button type="submit">Search!</button>
+          <label>Enter city name! <input type="text" onInput={(e) => {this.props.handleCityInput(e.target.value)}}></input>
+          </label>
+          <button onClick={this.props.handleGetData}>Search</button>
         </form>
 
       </Container>
