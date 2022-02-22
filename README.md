@@ -55,7 +55,7 @@ Finish time:
 Actual time needed to complete:
 
 ---------------------------------
-![ScreenShot](./public/images/wrrc1.png)
+![ScreenShot](./images/wrrc1.png)
 ![ScreenShot](./public/images/WRRC.PNG)
 ------------------------------
 
