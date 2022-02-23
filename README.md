@@ -1,14 +1,18 @@
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**:
+ 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
+
 users can see a map of location searched by user
 
 ## Getting Started
+
 git clone project
 npm i project
 npm start
 
 ## Architecture
+
 - react
 - javascript
 

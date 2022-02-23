@@ -6,8 +6,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "./Image";
-import Modal from "react-bootstrap/Modal"
-
+// import Modal from "react-bootstrap/Modal"
+import WeatherForecast from "./WeatherForecast";
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,8 @@ export default class Main extends React.Component {
       cityData: {},
       error: false,
       errorMessage: '',
-      showModal: false
+      showModal: false,
+      weatherResults: []
       
     };
   }
@@ -27,7 +28,11 @@ export default class Main extends React.Component {
     try {
       let request = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.query}&format=json`;
       let response = await axios.get(request);
+      let weatherRequest = `http://localhost:3001/weather?searchQuery=${this.state.query}&lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
+      let weatherResponse = await axios.get(weatherRequest);
+      console.log("weather response", weatherResponse.data);
       this.setState({
+        weatherResults: weatherResponse.data,
         searchResults: response.data,
         cityData: response.data[0],
       });
@@ -72,23 +77,34 @@ export default class Main extends React.Component {
               Error: {this.state.errorMessage}
             </Modal.Title>
           </Modal.Header>
-       </Modal>
+      </Modal>
     */
+    let filter = this.state.searchResults.slice(0, -1)
     return (
       <>
-       {this.state.error?  
-       <p>{this.state.errorMessage}</p>
+      {this.state.error?  
+      <p>{this.state.errorMessage}</p>
         :
-        <Container className="text-center">
+        <Container style={{justifycontent: 'center'}} className="text-center">
           <SearchBar
             handleCityInput={this.handleCity}
             handleGetData={this.handleGetData}
             />
           <Container className="mainContainer">
-            <Row xs={1} sm={2} md={3} lg={4}>
-              {this.state.searchResults.map((city, index) => (
-                <Col key={index}>
+            <Row xs={1} sm={2} md={3} lg={3}>
+              {filter.map((city, index) => (
+                  <Col key={index}>
                   <Cities cityData={city} />
+                </Col>
+              ))}
+            </Row>
+
+            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
+              {this.state.weatherResults.map((day, index) => (
+                <Col key={index}>
+                  <WeatherForecast 
+                  weatherResults={day}
+                  query={this.state.query}/>
                 </Col>
               ))}
             </Row>
@@ -97,7 +113,7 @@ export default class Main extends React.Component {
             cityData={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`}
             />
         </Container>
-       
+        
           }
       </>
     );
