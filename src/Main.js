@@ -28,7 +28,7 @@ export default class Main extends React.Component {
     try {
       let request = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.query}&format=json`;
       let response = await axios.get(request);
-      let weatherRequest = `http://localhost:3001/weather?searchQuery=${this.state.query}&lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
+      let weatherRequest = `https://city-explorer-pi.herokuapp.com/weather?searchQuery=${this.state.query}&lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
       let weatherResponse = await axios.get(weatherRequest);
       console.log("weather response", weatherResponse.data);
       this.setState({
