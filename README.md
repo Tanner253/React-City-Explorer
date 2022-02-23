@@ -1,17 +1,21 @@
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**:
+ 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
+
 users can see a map of location searched by user
 
 # User Stories
 Given that a user enters a valid location in the input, When the user clicks the "Explore!" button, Then the latitude and longitude will be displayed on the page.
 
 ## Getting Started
+
 git clone project
 npm i project
 npm start
 
 ## Architecture
+
 - react
 - javascript
 
