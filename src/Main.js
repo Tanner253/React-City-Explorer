@@ -68,7 +68,7 @@ export default class Main extends React.Component {
       console.log("Main - 50 error response:", event.response);
       this.setState({
         error: true,
-        errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`
+        errorMessage: `anErrorOccured: ${event.response}, ${event.response.data}`
       })
     }
 
