@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import Image from "./Image";
 // import Modal from "react-bootstrap/Modal"
 import WeatherForecast from "./WeatherForecast";
+import Movies from "./Movies";
+
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -18,35 +20,60 @@ export default class Main extends React.Component {
       error: false,
       errorMessage: '',
       showModal: false,
-      weatherResults: []
+      weatherResults: [],
+      movieResults: []
       
     };
   }
 
   handleGetData = async (event) => {
     event.preventDefault();
+
     try {
-      let request = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.query}&format=json`;
-      let response = await axios.get(request);
-      let weatherRequest = `https://city-explorer-pi.herokuapp.com/weather?searchQuery=${this.state.query}&lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
-      let weatherResponse = await axios.get(weatherRequest);
-      console.log("weather response", weatherResponse.data);
+      let locationRequestURL = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.query}&format=json`;
+      let locationResponse = await axios.get(locationRequestURL);
       this.setState({
-        weatherResults: weatherResponse.data,
-        searchResults: response.data,
-        cityData: response.data[0],
+        cityData: locationResponse.data[0],
+        searchResults: locationResponse.data,
       });
     } catch (event) {
-      console.log("error:", event);
-      console.log("error response:", event.response);
+      console.log("Main - 37 error response:", event.response);
       this.setState({
         error: true,
         errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`
       })
-      console.log("error:", event);
-      console.log("error response:", event.response);
     }
+
+    try {
+      let weatherRequestURL = `${process.env.REACT_APP_LOCAL}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
+      let weatherResponse = await axios.get(weatherRequestURL);
+      this.setState({ 
+        weatherResults: weatherResponse.data
+      });
+    } catch (event) {
+      console.log("Main - 50 error response:", event.response);
+      this.setState({
+        error: true,
+        errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`
+      })
+    }
+
+    try {
+      let movieRequestURL = `${process.env.REACT_APP_LOCAL}/movies?searchQuery=${this.state.query}`;
+      let movieResponse = await axios.get(movieRequestURL);
+      this.setState({ 
+        movieResults: movieResponse.data
+      });
+    } catch (event) {
+      console.log("Main - 50 error response:", event.response);
+      this.setState({
+        error: true,
+        errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`
+      })
+    }
+
   };
+
 
   handleCity = (e) => {
     this.setState({
@@ -105,6 +132,16 @@ export default class Main extends React.Component {
                   <WeatherForecast 
                   weatherResults={day}
                   query={this.state.query}/>
+                </Col>
+              ))}
+            </Row>
+
+            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
+              {this.state.movieResults.map((movie, index) => (
+                <Col key={index}>
+                  <Movies 
+                  movieResults={movie}
+                  />
                 </Col>
               ))}
             </Row>
