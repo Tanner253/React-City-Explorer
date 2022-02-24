@@ -30,7 +30,7 @@ export default class Main extends React.Component {
     event.preventDefault();
 
     try {
-      let locationRequestURL = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_SERVER}&q=${this.state.query}&format=json`;
+      let locationRequestURL = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.query}&format=json`;
       let locationResponse = await axios.get(locationRequestURL);
       this.setState({
         cityData: locationResponse.data[0],
