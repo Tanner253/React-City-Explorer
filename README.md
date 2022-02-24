@@ -20,9 +20,8 @@ npm start
 - javascript
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+01-01-2022 Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
 
@@ -51,6 +50,22 @@ Estimate of time needed to complete: 1 hr
 Start time: 7
 Finish time:930
 Actual time needed to complete:2 and a half hourss
+Name of feature: weather (live)
+Estimate of time needed to complete: 1 hr
+Start time: 1:15
+Finish time:2:15
+Actual time needed to complete:1hr
+Name of feature: Movies
+Estimate of time needed to complete: 1 hr
+Start time: 2:30
+Finish time: 4:30
+Actual time needed to complete:2 hr
+Name of feature: deploy
+Estimate of time needed to complete: 15 min
+Start time: 5
+Finish time: 6
+Actual time needed to complete: 1 hour
+
 
 Name of feature: 
 Estimate of time needed to complete: 
