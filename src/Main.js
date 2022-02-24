@@ -42,7 +42,7 @@ export default class Main extends React.Component {
     }
 
     try {
-      let weatherRequestURL = `${process.env.REACT_APP_LOCAL}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
+      let weatherRequestURL = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
       let weatherResponse = await axios.get(weatherRequestURL);
       this.setState({
         weatherResults: weatherResponse.data,
@@ -56,7 +56,7 @@ export default class Main extends React.Component {
     }
 
     try {
-      let movieRequestURL = `${process.env.REACT_APP_LOCAL}/movies?searchQuery=${this.state.query}`;
+      let movieRequestURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.query}`;
       let movieResponse = await axios.get(movieRequestURL);
       this.setState({
         movieResults: movieResponse.data,
