@@ -30,7 +30,7 @@ export default class Main extends React.Component {
     event.preventDefault();
 
     try {
-      let locationRequestURL = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.query}&format=json`;
+      let locationRequestURL = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_SERVER}&q=${this.state.query}&format=json`;
       let locationResponse = await axios.get(locationRequestURL);
       this.setState({
         cityData: locationResponse.data[0],
@@ -45,7 +45,7 @@ export default class Main extends React.Component {
     }
 
     try {
-      let weatherRequestURL = `${process.env.REACT_APP_LOCAL}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
+      let weatherRequestURL = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
       let weatherResponse = await axios.get(weatherRequestURL);
       this.setState({ 
         weatherResults: weatherResponse.data
@@ -59,7 +59,7 @@ export default class Main extends React.Component {
     }
 
     try {
-      let movieRequestURL = `${process.env.REACT_APP_LOCAL}/movies?searchQuery=${this.state.query}`;
+      let movieRequestURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.query}`;
       let movieResponse = await axios.get(movieRequestURL);
       this.setState({ 
         movieResults: movieResponse.data
