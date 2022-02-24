@@ -66,10 +66,16 @@ Start time: 5
 Finish time: 6
 Actual time needed to complete: 1 hour
 
-
 Name of feature: 
 Estimate of time needed to complete: 
 Start time: 
+Finish time:
+Actual time needed to complete:
+
+
+Name of feature: Modularize3
+Estimate of time needed to complete: 3 hr
+Start time: 1:30 pm
 Finish time:
 Actual time needed to complete:
 
