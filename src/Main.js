@@ -7,8 +7,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "./Image";
 // import Modal from "react-bootstrap/Modal"
-import WeatherForecast from "./WeatherForecast";
-import Movies from "./Movies";
+import Weather from "./Weather";
+import Theatre from "./Theatre";
+import CityGroup from "./CityGroup";
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -18,11 +19,10 @@ export default class Main extends React.Component {
       searchResults: [],
       cityData: {},
       error: false,
-      errorMessage: '',
+      errorMessage: "",
       showModal: false,
       weatherResults: [],
-      movieResults: []
-      
+      movieResults: [],
     };
   }
 
@@ -40,40 +40,38 @@ export default class Main extends React.Component {
       console.log("Main - 37 error response:", event.response);
       this.setState({
         error: true,
-        errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`
-      })
+        errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`,
+      });
     }
 
     try {
-      let weatherRequestURL = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
+      let weatherRequestURL = `${process.env.REACT_APP_LOCAL}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
       let weatherResponse = await axios.get(weatherRequestURL);
-      this.setState({ 
-        weatherResults: weatherResponse.data
+      this.setState({
+        weatherResults: weatherResponse.data,
       });
     } catch (event) {
       console.log("Main - 50 error response:", event.response);
       this.setState({
         error: true,
-        errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`
-      })
+        errorMessage: `anErrorOccured: ${event.response.status}, ${event.response.data}`,
+      });
     }
 
     try {
-      let movieRequestURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.query}`;
+      let movieRequestURL = `${process.env.REACT_APP_LOCAL}/movies?searchQuery=${this.state.query}`;
       let movieResponse = await axios.get(movieRequestURL);
-      this.setState({ 
-        movieResults: movieResponse.data
+      this.setState({
+        movieResults: movieResponse.data,
       });
     } catch (event) {
       console.log("Main - 50 error response:", event.response);
       this.setState({
         error: true,
-        errorMessage: `anErrorOccured: ${event.response}, ${event.response.data}`
-      })
+        errorMessage: `anErrorOccured: ${event.response}, ${event.response.data}`,
+      });
     }
-
   };
-
 
   handleCity = (e) => {
     this.setState({
@@ -82,21 +80,20 @@ export default class Main extends React.Component {
   };
   handleShow = (error) => {
     this.setState({
-      showModal:true,
-      error:error,
-      
+      showModal: true,
+      error: error,
     });
-  }
+  };
   handleHide = () => {
     this.setState({
-      showModal:false,
-      error:false
+      showModal: false,
+      error: false,
     });
-  }
+  };
   render() {
     console.log(this.state);
-    
-      //Doesnt work
+
+    //Doesnt work
     /*
     <Modal show={this.handleShow(this.state.errorMessage)} hide={this.handleHide()}>
           <Modal.Header closebutton>
@@ -106,52 +103,35 @@ export default class Main extends React.Component {
           </Modal.Header>
       </Modal>
     */
-    let filter = this.state.searchResults.slice(0, -1)
+
     return (
       <>
-      {this.state.error?  
-      <p>{this.state.errorMessage}</p>
-        :
-        <Container style={{justifycontent: 'center'}} className="text-center">
-          <SearchBar
-            handleCityInput={this.handleCity}
-            handleGetData={this.handleGetData}
+        {this.state.error ? (
+          <p>{this.state.errorMessage}</p>
+        ) : (
+          <Container
+            style={{ justifycontent: "center" }}
+            className="text-center"
+          >
+            <SearchBar
+              handleCityInput={this.handleCity}
+              handleGetData={this.handleGetData}
             />
-          <Container className="mainContainer">
-            <Row xs={1} sm={2} md={3} lg={3}>
-              {filter.map((city, index) => (
-                  <Col key={index}>
-                  <Cities cityData={city} />
-                </Col>
-              ))}
-            </Row>
+            <Container className="mainContainer">
 
-            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-              {this.state.weatherResults.map((day, index) => (
-                <Col key={index}>
-                  <WeatherForecast 
-                  weatherResults={day}
-                  query={this.state.query}/>
-                </Col>
-              ))}
-            </Row>
+              <CityGroup searchResults={this.state.searchResults} />
+              <Weather
+                weatherResults={this.state.weatherResults}
+                query={this.state.query}
+              />
+              <Theatre movieResults={this.state.movieResults} />
 
-            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-              {this.state.movieResults.map((movie, index) => (
-                <Col key={index}>
-                  <Movies 
-                  movieResults={movie}
-                  />
-                </Col>
-              ))}
-            </Row>
+            </Container>
+            <Image
+              cityData={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`}
+            />
           </Container>
-          <Image
-            cityData={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`}
-            />
-        </Container>
-        
-          }
+        )}
       </>
     );
   }
