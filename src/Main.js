@@ -1,10 +1,7 @@
 import React from "react";
 import axios from "axios";
 import SearchBar from "./SearchBar";
-import Cities from "./Cities";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Image from "./Image";
 // import Modal from "react-bootstrap/Modal"
 import Weather from "./Weather";
@@ -45,7 +42,7 @@ export default class Main extends React.Component {
     }
 
     try {
-      let weatherRequestURL = `${process.env.REACT_APP_LOCAL}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
+      let weatherRequestURL = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`;
       let weatherResponse = await axios.get(weatherRequestURL);
       this.setState({
         weatherResults: weatherResponse.data,
@@ -59,7 +56,7 @@ export default class Main extends React.Component {
     }
 
     try {
-      let movieRequestURL = `${process.env.REACT_APP_LOCAL}/movies?searchQuery=${this.state.query}`;
+      let movieRequestURL = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.query}`;
       let movieResponse = await axios.get(movieRequestURL);
       this.setState({
         movieResults: movieResponse.data,
@@ -118,14 +115,12 @@ export default class Main extends React.Component {
               handleGetData={this.handleGetData}
             />
             <Container className="mainContainer">
-
               <CityGroup searchResults={this.state.searchResults} />
               <Weather
                 weatherResults={this.state.weatherResults}
                 query={this.state.query}
               />
               <Theatre movieResults={this.state.movieResults} />
-
             </Container>
             <Image
               cityData={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=13`}
