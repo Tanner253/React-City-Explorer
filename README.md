@@ -75,6 +75,11 @@ Estimate of time needed to complete: 3hr
 Start time: 2:30
 Finish time: 3:20
 Actual time needed to complete: 50 min
+Name of feature: Caching
+Estimate of time needed to complete: 2hr 
+Start time: 1:40
+Finish time: 2:20
+Actual time needed to complete: 30 min
 
 
 ---------------------------------
