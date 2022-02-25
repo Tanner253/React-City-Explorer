@@ -85,6 +85,7 @@ Actual time needed to complete: 50 min
 
 ![ScreenShot](./public/images/cool.png)
 ![ScreenShot](./public/images/WRRCLAB09-TANNER-REY.png)
+![ScreenShot](./public/images/wrrc-2-25.png)
 
 ------------------------------
 
